@@ -144,4 +144,4 @@ Set-RunAsAdmin $exe (-not $NoAdmin)
 
 Write-Host ''
 Write-Host 'Done. Search "BlueBird NEST" in Start, or use the Desktop icon.'
-if (-not $NoAdmin) { Write-Host 'Windows will show a UAC prompt each time NEST starts; that is expected.' }
+if (-not $NoAdmin) { Write-Host 'Windows will show a UAC prompt each time NEST starts; that is expected (it lets NEST install the 757 without permission errors).' }
