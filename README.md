@@ -1,4 +1,4 @@
-# nest-shortcut-fix
+# bluebird-757-nest-shortcut-fix
 
 **The BlueBird Simulations NEST installer doesn't create a shortcut, so after you install NEST, Windows Search can't find it.** This repo has a small PowerShell tool that adds the missing Start Menu and Desktop shortcuts. By default it also sets NEST to always run as administrator, which prevents the permission errors NEST hits when installing the 757.
 
