@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
     Creates the missing Start Menu and Desktop shortcuts for BlueBird Simulations NEST,
-    and (by default) marks NEST to always run as administrator.
+    and (by default) marks NEST to always run as administrator so installing the 757 does not fail with a permission error.
 
 .DESCRIPTION
     The NEST 1.0.0.0 installer copies the program to

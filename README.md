@@ -1,6 +1,6 @@
 # bluebird-nest-shortcut-fix
 
-**The BlueBird Simulations NEST installer doesn't create a shortcut, so after you install NEST, Windows Search can't find it.** This repo has a small PowerShell tool that adds the missing Start Menu and Desktop shortcuts. By default it also sets NEST to always run as administrator.
+**The BlueBird Simulations NEST installer doesn't create a shortcut, so after you install NEST, Windows Search can't find it.** This repo has a small PowerShell tool that adds the missing Start Menu and Desktop shortcuts. By default it also sets NEST to always run as administrator, which prevents the permission errors NEST hits when installing the 757.
 
 > Not affiliated with, endorsed by, or supported by BlueBird Simulations. "BlueBird Simulations" and "NEST" are used only to identify the software this workaround is for. If BlueBird ships an installer that creates shortcuts, you don't need this.
 
@@ -181,7 +181,7 @@ Nothing else changes: not NEST's files, not its registry entry, not any system-w
 
 ## About "run as administrator"
 
-**Why it's on by default.** Some people want NEST elevated so it can read and write anywhere it needs to without permission errors, for example simulator folders under protected locations. That's a user preference, not something the NEST installer asks for. If NEST works fine for you without it, use `-NoAdmin`. Running a program with fewer rights is always the safer default.
+**Why it's on by default.** NEST also installs aircraft. Without administrator rights, installing the **757** through NEST fails with a permission error, because NEST can't write everything it needs into the protected folders the aircraft goes to. With NEST elevated, the 757 installs normally. If you only use NEST for things that don't need it, `-NoAdmin` is the safer choice: running a program with fewer rights is always the safer default.
 
 **How it works.** Windows keeps per-program compatibility settings in the `AppCompatFlags\Layers` registry key. The `RUNASADMIN` layer tells Windows to require elevation whenever that `.exe` starts, whether you launch it from the shortcut, from Explorer, or by double-clicking the `.exe`. That's why it's set on the program and not just on the shortcut: a shortcut-only "Run as administrator" tick wouldn't apply when NEST is started any other way. The leading `~` is the normal prefix Windows itself writes for layers set through the Properties dialog.
 
@@ -215,6 +215,8 @@ This does exactly what the tool does.
 ## Troubleshooting
 
 **"Could not find bbs_nest.exe."** NEST isn't installed for your Windows account, or it's somewhere unusual. Pass the path with `-ExePath`.
+
+**"Permission" or "access denied" error while installing the 757.** NEST isn't running elevated. Run the tool without `-NoAdmin`, close NEST completely, then start it again from the shortcut and click **Yes** on the UAC prompt.
 
 **The shortcut exists but Start search still doesn't show it.** Give Windows Search a minute to index the new Start Menu entry, or sign out and back in. You can also check **Start, All apps, B**.
 
